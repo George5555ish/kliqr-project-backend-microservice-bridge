@@ -12,22 +12,57 @@ require('dotenv').config();
 app.use(express.json());
 app.use(cors());
 
-app.get('/:id', async (req, res)=> {
+app.get('/', async (req, res)=> {
 
-
-    const id = req.params.id
-    console.log(id)
- axios.get('http://localhost:3000/transactions/' + id).then((response)=>{
+ axios.get('http://localhost:3000/transactions/').then((response)=>{
     // console.log(response.data.result);
 
      
-res.json({result: response.data.result})
+res.json({"payload": response.data})
    });
 
     
   
 
 });
+
+app.get('/:id', async (req, res)=> {
+
+
+    const id = req.params.id
+    // console.log(id)
+ axios.get('http://localhost:3000/transactions/' + id).then((response)=>{
+    // console.log(response.data.result);
+
+     
+res.json({"payload": response.data})
+   });
+
+    
+  
+
+});
+
+// app.get('/users/:id', async (req, res)=> {
+
+
+//     const id = req.params.id
+//     console.log(id)
+
+//     await axios.get('http://localhost:3000/user/user/' + id).then((val)=>{
+//         console.log(val.data);
+    
+         
+//     res.send(val)
+//        }).catch((err)=> {if (err){
+//            console.log(err.message)
+//        }
+//     });
+
+    
+  
+
+// });
 
 
 
